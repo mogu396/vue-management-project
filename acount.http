@@ -1,0 +1,55 @@
+@URL=http://localhost:8090
+@token=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTVmNzA0YmIzMDk0NDFiMmFmNjIxNCIsIm5hbWUiOiJsbGIiLCJpYXQiOjE2MzcyNDI5NTQsImV4cCI6MTYzNzMyOTM1NH0.sSm3FKJAYuwVJbSM_tmb-v1hilJU8V5Jr5r4QjhUCCM
+
+###
+GET {{URL}}/api/acounts/test
+
+
+
+
+# 信息添加
+###
+POST {{URL}}/api/acounts/add
+Authorization: {{token}}
+Content-Type: application/json
+
+
+{
+    "type":"aba",
+    "acountDescrition":"test",
+    "income":"20",
+    "expend":"10",
+    "remark":"123",
+    "AcountCash":"300",
+    "userId":"6195f704bb309441b2af6214"
+
+}
+
+
+# 查询当前账户所有信息
+###
+GET  {{URL}}/api/acounts
+Authorization: {{token}}
+Content-Type: application/json
+
+
+###获取一条
+GET {{URL}}/api/acounts/619643134185ba8c2bed75f6
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTVmNzA0YmIzMDk0NDFiMmFmNjIxNCIsIm5hbWUiOiJsbGIiLCJpYXQiOjE2MzcyMzQ3OTAsImV4cCI6MTYzNzIzODM5MH0.wAOWx4I2KNY8S7sTHuvLD_ttOchTQbaQMYo1PF3SjXI
+Content-Type: application/json
+
+###修改一条
+PUT  {{URL}}/api/acounts/edit/6196587aeead784e712aeaa4
+Authorization: {{token}}
+Content-Type: application/x-www-form-urlencoded
+
+type=bbba
+&acountDescrition=nihao
+&income=22
+&expend=33
+&AcountCash=200
+
+
+###
+DELETE {{URL}}/api/acounts/delete/6196587aeead784e712aeaa4
+Authorization: {{token}}

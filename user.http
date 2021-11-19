@@ -1,0 +1,49 @@
+@URL=http://localhost:8090
+
+###
+GET {{URL}}/api/users
+
+###
+POST {{URL}}/api/users/register
+Content-Type: application/x-www-form-urlencoded
+
+email=123qweasd@qq.com
+&name=llb
+&password=llb
+
+
+###
+POST {{URL}}/api/users/register
+Content-Type: application/x-www-form-urlencoded
+
+email=qweasdzxc@163.com
+&name=llb
+&password=llb
+&identity=gm
+
+###
+
+POST {{URL}}/api/users/login
+Content-Type: application/json
+
+{
+    "email":"123qweasd@qq.com",
+    "name":"llb",
+    "password":"llb"
+}
+
+###
+POST {{URL}}/api/users/login
+Content-Type: application/json
+
+{
+    "email":"qweasdzxc@163.com",
+    "name":"llb",
+    "password":"llb"
+}
+
+###
+GET {{URL}}/api/users/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTVmNzA0YmIzMDk0NDFiMmFmNjIxNCIsIm5hbWUiOiJsbGIiLCJpYXQiOjE2MzcyMjQ5NTIsImV4cCI6MTYzNzIyODU1Mn0.EhwWm58kjkRI8s3NRD_um6s9vLDrgWi6Z9hjzojo99g
+
+
