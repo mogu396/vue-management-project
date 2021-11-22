@@ -67,7 +67,7 @@ router.get('/:id', jwtDetect, (req, res) => {
 router.put('/edit/:id', jwtDetect, (req, res) => {
     // { type, acountDescrition, income, expend, AcountCash, remark }=acount
     Acount.findByIdAndUpdate(req.params.id, req.body).then(data => {
-        res.status(201).json(data)
+        res.status(200).json(data)
     }).catch(err => {
         res.status(404).json(err)
         console.log(err)
@@ -77,7 +77,7 @@ router.put('/edit/:id', jwtDetect, (req, res) => {
 // 删除
 router.delete('/delete/:id', jwtDetect, (req, res) => {
     Acount.findByIdAndDelete(req.params.id).then(data => {
-        res.status(201).json(data)
+        res.status(200).json(data)
     }).catch(err => {
         res.status(404).json(err)
         console.log(err)

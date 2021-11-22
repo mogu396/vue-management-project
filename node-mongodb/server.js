@@ -1,15 +1,21 @@
 const express=require('express')
 const app = express()
+const cors=require('cors')
 const users=require('./routers/api/users')
 const acounts=require('./routers/api/acount')
+
 // 设置变量环境
 const port = process.env.PORT || 8090
 
 require('./db/db')
 
 
+
 // 使用中间件
+// 解决跨域
+app.use(cors())
 // 解析json
+
 app.use(express.json())
 // Express4.16+已经加入了bodyParser
 /**

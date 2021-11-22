@@ -1,20 +1,21 @@
 const mongoose = require('mongoose')
+const dayjs =require('dayjs')
 const Schema = mongoose.Schema
 
 const userSchema = new Schema({
-  name: {
+  userName: {
     type: String,
     required: true
   },
-  email: {
+  userEmail: {
     type: String,
     required: true
   },
-  password: {
+  userPassword: {
     type: String,
     required: true
   },
-  avatar: {
+  userPasswordConfirm: {
     type: String
   },
   identity: {
@@ -24,7 +25,7 @@ const userSchema = new Schema({
   },
   date: {
     type: Date,
-    default: Date.now
+    default: dayjs().add(8,'hour')
   }
 })
 
