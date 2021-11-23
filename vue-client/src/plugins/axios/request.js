@@ -24,8 +24,7 @@ request.interceptors.request.use(
     config => {
         startLoadingAnimation()
         // 将token设置到每个http请求的请求头
-        config.headers.Authorization=localStorage.getItem('userToken')
-        console.log(config);
+        config.headers.Authorization = localStorage.getItem('userToken')
         return config
     }, err => {
         stopLoadingAnimation()
@@ -49,18 +48,17 @@ request.interceptors.response.use(
             message: '请检查网络或刷新网页',
             type: 'error'
         })
-        const {status}=err
-        if(status===401){
+        const { status } = err
+        if (status === 401) {
             Notification({
                 title: 'token失效',
                 message: '请重新登陆',
                 type: 'error'
             })
+            // 清除token,跳转到登陆页面
+            localStorage.removeItem('userToken')
+            router.push('/login')
         }
-        // 清除token,跳转到登陆页面
-        localStorage.removeItem('userToken')
-        router.push('/login')
-
         return Promise.reject(err)
     }
 )

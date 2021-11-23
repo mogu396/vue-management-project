@@ -35,9 +35,6 @@ export default {
       return this.$store.getters.user;
     },
   },
-  created(){
-    console.log(this.$router)
-  },
   methods: {
     setDialogInfo(command) {
       if (!command) {
@@ -75,7 +72,6 @@ export default {
   padding: 5px;
   background: #333;
   color: #fff;
-  border-bottom: 1px solid #1a1a1a;
   .logo-container {
     line-height: 40px;
     min-width: 400px;

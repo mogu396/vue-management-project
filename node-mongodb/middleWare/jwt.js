@@ -4,7 +4,7 @@ const jwtDetect = (req, res, next) => {
     const raw = String(req.headers.authorization).split(' ')[1]
     jwt.verify(raw, secretKey, (err, data) => {
         if (err) {
-            res.status(400).json({ msg: 'token error' })
+            res.status(401).json({ msg: 'token error' })
             throw err
         } else {
             req.tokenData = data

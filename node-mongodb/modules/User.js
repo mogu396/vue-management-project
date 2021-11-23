@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const dayjs =require('dayjs')
+const dayjs = require('dayjs')
 const Schema = mongoose.Schema
 
 const userSchema = new Schema({
@@ -20,12 +20,12 @@ const userSchema = new Schema({
   },
   identity: {
     type: String,
-    required:true
-    
+    required: true
+
   },
   date: {
     type: Date,
-    default: dayjs().add(8,'hour')
+    default: Date.now
   }
 })
 

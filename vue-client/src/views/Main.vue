@@ -5,7 +5,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name:"Main"
+};
 </script>
 
 <style lang="scss" scoped>

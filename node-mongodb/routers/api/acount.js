@@ -31,11 +31,15 @@ router.post('/add', jwtDetect, (req, res) => {
 
     acount.save().then((acount) => {
         res.json(acount)
+    }).catch(err => {
+        res.status(500).json(err)
     })
 })
 
 // 获取当前用户的所有账户信息
 router.get('/', jwtDetect, (req, res) => {
+
+
     Acount.find().then(data => {
         if (!data.length) {
             res.status(404).json({ "msg": "not found anythings" })
@@ -64,7 +68,7 @@ router.get('/:id', jwtDetect, (req, res) => {
 
 
 // 编辑
-router.put('/edit/:id', jwtDetect, (req, res) => {
+router.post('/edit/:id', jwtDetect, (req, res) => {
     // { type, acountDescrition, income, expend, AcountCash, remark }=acount
     Acount.findByIdAndUpdate(req.params.id, req.body).then(data => {
         res.status(200).json(data)

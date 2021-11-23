@@ -1,5 +1,5 @@
 @URL=http://localhost:8090
-@token=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTVmNzA0YmIzMDk0NDFiMmFmNjIxNCIsIm5hbWUiOiJsbGIiLCJpYXQiOjE2MzcyNDI5NTQsImV4cCI6MTYzNzMyOTM1NH0.sSm3FKJAYuwVJbSM_tmb-v1hilJU8V5Jr5r4QjhUCCM
+@token=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOWExOTEyOGUxYmIwZjBjZDVjNDQ5OCIsInVzZXJOYW1lIjoicXdlIiwidXNlckVtYWlsIjoicXdlcXdlQHFxLmNvbSIsImlkZW50aXR5IjoiZW1wbG95ZWUiLCJpYXQiOjE2Mzc2NzQ0MzMsImV4cCI6MTYzNzc2MDgzM30.-YBADIPiQxLhvzeK-T8aFmN3LUg_KGM7sA0DR-Egd8s
 
 ###
 GET {{URL}}/api/acounts/test
@@ -39,11 +39,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTVmNzA0Y
 Content-Type: application/json
 
 ###修改一条
-PUT  {{URL}}/api/acounts/edit/6196587aeead784e712aeaa4
+POST  {{URL}}/api/acounts/edit/619ca5937738c771a8144c59
 Authorization: {{token}}
 Content-Type: application/x-www-form-urlencoded
 
-type=bbba
+type=生活
 &acountDescrition=nihao
 &income=22
 &expend=33

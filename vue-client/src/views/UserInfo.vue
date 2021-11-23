@@ -19,7 +19,8 @@
         </div>
       </el-card>
     </el-col>
-    <el-col :span="16"> </el-col>
+    <el-col :span="16">
+    </el-col>
   </el-row>
 </template>
 
@@ -30,9 +31,6 @@ export default {
     user() {
       return this.$store.getters.user;
     },
-  },
-  mounted() {
-    console.log(this.user);
   },
 };
 </script>

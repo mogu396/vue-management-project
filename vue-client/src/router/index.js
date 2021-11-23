@@ -6,6 +6,7 @@ const Register = () => import('../views/Register')
 const Login = () => import('../views/Login')
 const Main = () => import('../views/Main')
 const UserInfo = () => import('../views/UserInfo')
+const AcountManage = () => import('../views/AcountManage')
 
 
 Vue.use(VueRouter)
@@ -21,7 +22,8 @@ const routes = [
     children: [
       { path: '/', component: Main },
       { path: '/home', component: Main },
-      { path: '/userinfo', name: 'UserInfo', component: UserInfo }
+      { path: '/userinfo', name: 'UserInfo', component: UserInfo },
+      { path: '/acountmanage', name: 'AcountManage', component: AcountManage }
     ]
   },
   {
