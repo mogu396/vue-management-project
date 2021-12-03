@@ -55,6 +55,8 @@ router.post('/register', (req, res) => {
 
 
         }
+    }).catch(err => {
+        res.status(500).json(err)
     })
 })
 
@@ -64,40 +66,46 @@ router.post('/login', (req, res) => {
     const userEmail = req.body.userEmail
     const userPassword = req.body.userPassword
 
-    User.findOne({ userEmail }).then((user) => {
-        if (!user) {
-            res.status(404).json({ msg: "用户未注册" })
-        }
-        // 解密密码
-        // 参数一，前端获取的密码
-        // 参数二，数据库存储的密码
-        bcryptjs.compare(userPassword, user.userPassword).then(isMatch => {
-            if (isMatch) {
-                // 规则，名字，过期时间(对象),回调函数
-                const rule = {
-                    id: user.id,
-                    userName: user.userName,
-                    userEmail:user.userEmail,
-                    identity: user.identity,
-                }
-                jwt.sign(rule, secretKey, { expiresIn: "1 days" }, (err, token) => {
-                    if (err) {
-                        res.status(400).json({ msg: 'token error' })
-                    }
-                    res.json({
-                        success: true,
-                        token: "Bearer " + token,
+    User.findOne({ userEmail })
+        .then((user) => {
+            if (!user) {
+                res.status(404).json({ msg: "用户未注册" })
+            }
+            // 解密密码
+            // 参数一，前端获取的密码
+            // 参数二，数据库存储的密码
+            bcryptjs.compare(userPassword, user.userPassword).then(isMatch => {
+                if (isMatch) {
+                    // 规则，名字，过期时间(对象),回调函数
+                    const rule = {
                         id: user.id,
                         userName: user.userName,
                         userEmail: user.userEmail,
-                        identity: user.identity
+                        identity: user.identity,
+                    }
+                    jwt.sign(rule, secretKey, { expiresIn: 3600 }, (err, token) => {
+                        if (err) {
+                            res.status(400).json({ msg: 'token error' })
+                        }
+                        res.json({
+                            success: true,
+                            token: "Bearer " + token,
+                            id: user.id,
+                            userName: user.userName,
+                            userEmail: user.userEmail,
+                            identity: user.identity
+                        })
                     })
-                })
-            } else {
-                res.status(401).json({ msg: "userPassword error" })
-            }
+                } else {
+                    res.status(401).json({ msg: "userPassword error" })
+                }
+            }).catch(err => {
+                res.status(401).json(err)
+            })
         })
-    })
+        .catch(err => {
+            res.status(500).json(err)
+        })
 })
 
 
@@ -106,7 +114,7 @@ router.use('/profile', (req, res, next) => {
     jwt.verify(raw, secretKey, (err, data) => {
         if (err) {
             res.status(401).json({ msg: 'token error' })
-            throw err
+            next(err)
         } else {
             req.tokenData = data
             console.log('-----------');
